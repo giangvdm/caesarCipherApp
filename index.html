@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ceasar Cipher Encoder/Decoder</title>
+    <!-- Load FontAwesome -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- Load custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="app">
+        <div class="app__header">
+            <img src="assets/images/logo.png" alt="Ceasar Cipher logo" class="header__logo">
+            <h1 class="header__title">Ceasar Cipher <br> Encoder &amp; Decoder</h1>
+        </div>
+        <div class="app__main">
+            <div class="app__section main__key">
+                <h2>Key</h2> <i class="far fa-question-circle"></i>
+                <form action="#" class="main__form" id="js-key-form">
+                    <input type="text" name="key" size="2" alt="Provide a key before encoding/decoding">
+                    <input type="button" value="OK" class="custom-btn" name="key-submit" alt="Confirm your key">
+                </form>
+            </div>
+            <div class="app__section main__encoder">
+                <h2>Encoder</h2> <i class="far fa-question-circle"></i>
+                <form action="" class="main__form" id="js-encoder-form">
+                    <textarea name="plaintext-input" id="plaintext-input" rows="2" placeholder="Enter your Plaintext"></textarea>
+                    <input type="button" value="Encode" class="custom-btn">
+                    <br>
+                    <textarea name="ciphertext-output" id="ciphertext-output" rows="2" readonly placeholder="Click 'Encode' button to get your Ciphertext"></textarea>
+                    <input type="button" value="Copy" class="custom-btn">
+                </form>
+            </div>
+
+            <div class="app__section main__decoder">
+                <h2>Decoder</h2> <i class="far fa-question-circle"></i>
+                <form action="" class="main__form" id="js-decoder-form">
+                    <textarea name="ciphertext-input" id="ciphertext-input" rows="2" placeholder="Enter your Ciphertext"></textarea>
+                    <input type="button" value="Decode" class="custom-btn">
+                    <br>
+                    <textarea name="plaintext-output" id="plaintext-output" rows="2" readonly placeholder="Click 'Decode' button to get your Plaintext"></textarea>
+                    <input type="button" value="Copy" class="custom-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="app__footer">
+        Designed and built by <a href="https://github.com/giangvdm15" target="_blank">giangvdm15</a>
+    </div>
+
+    <!-- Load custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

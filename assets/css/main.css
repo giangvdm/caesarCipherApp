@@ -1,0 +1,117 @@
+/* */
+/* Reset CSS */
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+/* Body */
+body {
+    font-family: monospace;
+}
+
+h2 {
+    margin-top: 0.5em;
+    display: inline-block;
+}
+
+i.fa, i.far {
+    display: inline;
+    color: #888888;
+    transition: color 0.2s;
+}
+
+i.fa:hover, i.far:hover {
+    cursor: pointer;
+    color: #000000;
+}
+
+/* Application */
+.app {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto 480px auto;
+    column-gap: 5px;
+}
+
+.app > * {
+    grid-column: 2;
+    min-width: 0;
+    /* text-align: center; */
+}
+
+/* Header */
+.app__header {
+    text-align: center;
+}
+
+/* Logo */
+.header__logo {
+    max-width: 160px;
+    height: auto;
+}
+
+/* App main */
+.app__section {
+    margin: 1% 0;
+    padding: 1% 2% 2%;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s;
+}
+
+.app__section:hover {
+    box-shadow: 0 1px 8px #888888;
+}
+
+.custom-btn {
+    /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: border 0.1s;
+}
+
+.custom-btn:active {
+    border: 1px solid #888888;
+}
+
+#js-key-form > input[type="button"] {
+    height: 21px;
+}
+
+#js-key-form > input[type="text"] {
+    width: 20%;
+}
+
+.main__form > * {
+    font-family: monospace;
+}
+
+.main__form > textarea, .main__form > input[type="text"] {
+    width: 75%;
+    /* outline-color: #888888; */
+}
+
+.main__form > input[type="button"] {
+    min-width: 15%;
+    height: 36px;
+    float: right;
+}
+
+/* Footer */
+.app__footer {
+    padding: 1em 0;
+    text-align: center;
+    background-color: gray;
+}
+
+.app__footer > a {
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.2s;
+}
+
+.app__footer > a:hover {
+    color: #ffffff;
+}
+
+/* */
