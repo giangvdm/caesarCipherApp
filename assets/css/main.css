@@ -45,6 +45,10 @@ i.fa:hover, i.far:hover {
     text-align: center;
 }
 
+.app__header:hover {
+    cursor: pointer;
+}
+
 /* Logo */
 .header__logo {
     max-width: 160px;
@@ -79,7 +83,7 @@ i.fa:hover, i.far:hover {
 }
 
 #js-key-form > input[type="text"] {
-    width: 20%;
+    width: 15%;
 }
 
 .main__form > * {
