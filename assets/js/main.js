@@ -1,12 +1,10 @@
-var key = 3;
-
-var util = {
+var Util = {
     reloadPage: function () {
         window.location.reload(true);
     }
 }
 
-var help = {
+var Help = {
     keyHelp: function () {
         alert("key");
     },
@@ -18,13 +16,22 @@ var help = {
     }
 }
 
-var app = {
-    setKey: function () {
-        var keyInput = document.querySelector("#js-key-form > input[type='text']");
-        key = Number(keyInput.value);
+var App = {
+    key: 3,
+    inputText: document.querySelector("#js-app-form textarea#input-text").value,
+    setKey() {
+        var keyInput = document.querySelector("#js-key-input > input[type='text']").value;
+        this.key = Number(keyInput);
+        console.log(this.key);
+        console.log(this);
+        return this.key;
     },
-    encode: function () {
-        var plainText = document.querySelector("#js-encoder-form > input[type='text']");
+    encrypt() {
+        // console.log(this.key);
+    },
+    decrypt() {
+        // var ciphertext = this.inputText;
+        // var chars = ciphertext.split('');
     }
 }
 
@@ -43,10 +50,12 @@ var clientH3 = document.querySelector("div#output-and-copy").clientHeight / 2;
 var copyButton = document.querySelector("#output-and-copy > button");
 copyButton.style.height = String(clientH3) + "px";
 
-// document.querySelector("i#js-key-help").addEventListener("click", help.keyHelp);
-// document.querySelector("i#js-encoder-help").addEventListener("click", help.encoderHelp);
-// document.querySelector("i#js-decoder-help").addEventListener("click", help.decoderHelp);
+document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHelp);
+// document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
+// document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
 
-document.querySelector(".app__header").addEventListener("click", util.reloadPage);
+document.querySelector(".app__header").addEventListener("click", Util.reloadPage);
 
-// document.querySelector("#js-key-form > input[type='button']").addEventListener("click", app.setKey);
+document.querySelector("#js-key-input > button#key-submit").addEventListener("click", App.setKey);
+document.querySelector("button#js-encrypt-start").addEventListener("click", App.encrypt);
+document.querySelector("button#js-decrypt-start").addEventListener("click", App.decrypt);
