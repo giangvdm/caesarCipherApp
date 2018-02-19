@@ -1,13 +1,19 @@
-/* */
 /* Reset CSS */
 body, html {
     padding: 0;
     margin: 0;
 }
+/* */
 
-/* Body */
-body {
+
+/* Global and overwrite default tags */
+html * {
     font-family: monospace;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.2;
 }
 
 h2 {
@@ -18,13 +24,19 @@ h2 {
 i.fa, i.far {
     display: inline;
     color: #888888;
-    transition: color 0.2s;
 }
 
 i.fa:hover, i.far:hover {
     cursor: pointer;
     color: #000000;
 }
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+/* */
+
 
 /* Application */
 .app {
@@ -37,8 +49,9 @@ i.fa:hover, i.far:hover {
 .app > * {
     grid-column: 2;
     min-width: 0;
-    /* text-align: center; */
 }
+/* */
+
 
 /* Header */
 .app__header {
@@ -49,73 +62,76 @@ i.fa:hover, i.far:hover {
     cursor: pointer;
 }
 
-/* Logo */
 .header__logo {
     max-width: 160px;
     height: auto;
 }
+/* */
 
-/* App main */
-.app__section {
-    margin: 1% 0;
-    padding: 1% 2% 2%;
-    box-sizing: border-box;
-    transition: box-shadow 0.2s;
+
+/* Link below header */
+a.external-link {
+    margin: 1em 0 1.5em;
 }
 
-.app__section:hover {
-    box-shadow: 0 1px 8px #888888;
+a.external-link:hover {
+    text-decoration: underline;
 }
+/* */
 
+
+/* Custom button class */
 .custom-btn {
     /* Remove default button styling */
     border: none;
     outline: none;
+    /* Add custom styling */
+    margin: 0 0 0 1%;
+    width: 15%;
+    box-sizing: border-box;
+    float: right;
     transition: border 0.1s;
 }
 
 .custom-btn:active {
     border: 1px solid #888888;
 }
+/* */
 
-#js-key-form > input[type="button"] {
-    height: 21px;
+
+/* App main */
+.app__main {
+    margin-top: 1em;
 }
 
-#js-key-form > input[type="text"] {
+.key-input > input[type="text"] {
     width: 15%;
 }
+/* */
 
-.main__form > * {
-    font-family: monospace;
-}
 
-.main__form > textarea, .main__form > input[type="text"] {
-    width: 75%;
-    /* outline-color: #888888; */
+/* */
+#input-and-function > textarea, #output-and-copy > textarea {
+    width: 55%;
 }
+/* */
 
-.main__form > input[type="button"] {
-    min-width: 15%;
-    height: 36px;
-    float: right;
-}
 
 /* Footer */
 .app__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     padding: 1em 0;
     text-align: center;
     background-color: gray;
 }
 
 .app__footer > a {
-    text-decoration: none;
-    color: #000000;
     transition: color 0.2s;
 }
 
 .app__footer > a:hover {
     color: #ffffff;
 }
-
 /* */
