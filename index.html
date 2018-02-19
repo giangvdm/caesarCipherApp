@@ -21,43 +21,31 @@
             <h1 class="header__title">Ceasar Cipher
                 <br> Encoder &amp; Decoder</h1>
         </div>
-        <div class="app__main">
-            <div class="app__section main__key">
-                <h2>Key</h2>
-                <i class="far fa-question-circle" id="js-key-help"></i>
-                <form action="#" class="main__form" id="js-key-form">
-                    <input type="text" name="key" size="2" alt="Provide a key before encoding/decoding">
-                    <input type="button" value="OK" class="custom-btn" name="key-submit" alt="Confirm your key">
-                </form>
-            </div>
-            <div class="app__section main__encoder">
-                <h2>Encoder</h2>
-                <i class="far fa-question-circle" id="js-encoder-help"></i>
-                <form action="" class="main__form" id="js-encoder-form">
-                    <textarea name="plaintext-input" id="plaintext-input" rows="2" placeholder="Enter your Plaintext"></textarea>
-                    <input type="button" value="Encode" class="custom-btn">
-                    <br>
-                    <textarea name="ciphertext-output" id="ciphertext-output" rows="2" readonly placeholder="Click 'Encode' button to get your Ciphertext"></textarea>
-                    <input type="button" value="Copy" class="custom-btn">
-                </form>
-            </div>
 
-            <div class="app__section main__decoder">
-                <h2>Decoder</h2>
-                <i class="far fa-question-circle" id="js-decoder-help"></i>
-                <form action="" class="main__form" id="js-decoder-form">
-                    <textarea name="ciphertext-input" id="ciphertext-input" rows="2" placeholder="Enter your Ciphertext"></textarea>
-                    <input type="button" value="Decode" class="custom-btn">
-                    <br>
-                    <textarea name="plaintext-output" id="plaintext-output" rows="2" readonly placeholder="Click 'Decode' button to get your Plaintext"></textarea>
-                    <input type="button" value="Copy" class="custom-btn">
-                </form>
+        <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="external-link" target="_blank">Read more about Ceasar cipher before using >></a>
+
+        <div class="app__main" id="js-app-main">
+            <div class="key-input" id="js-key-input">
+                <input type="text" name="key" size="2" placeholder="Key"> <i class="far fa-question-circle"></i>
+                <button class="custom-btn" id="key-submit">OK</button>
+            </div>
+            <br>
+            <div class="app-form" id="js-app-form">
+                <div id="input-and-function">
+                    <textarea name="input-text" id="input-text" rows="4" placeholder="Input text"></textarea>
+                    <button class="custom-btn">Decode</button>
+                    <button class="custom-btn">Encode</button>
+                </div>
+                <div id="output-and-copy">
+                    <textarea name="output-text" id="output-text" rows="4" readonly placeholder="Output text"></textarea>
+                    <button class="custom-btn">Copy</button>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="app__footer">
-        Designed and built by
+        Developed by
         <a href="https://github.com/giangvdm15" target="_blank">giangvdm15</a>
     </div>
 
