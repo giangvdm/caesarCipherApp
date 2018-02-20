@@ -23,11 +23,11 @@
         </div>
 
         <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="external-link" target="_blank">Read more about Caesar cipher before using >></a>
-        <!-- <a href="">How to use this app</a> -->
 
         <div class="app__main" id="js-app-main">
             <div class="key-input" id="js-key-input">
-                <input type="text" name="key" size="2" placeholder="Key"> <i class="far fa-question-circle"></i>
+                <input type="text" name="key" size="2" placeholder="Key">
+                <i class="far fa-question-circle"></i>
                 <button class="custom-btn" id="key-submit">OK</button>
             </div>
             <br>
@@ -40,6 +40,8 @@
                 <div id="output-and-copy">
                     <textarea name="output-text" id="js-output-text" rows="4" readonly placeholder="Output text"></textarea>
                     <button class="custom-btn" id="js-copy">Copy</button>
+                    <!-- Message that shows when user hit copy button -->
+                    <div class="alert" id="js-copy-alert"></div>
                 </div>
             </div>
         </div>

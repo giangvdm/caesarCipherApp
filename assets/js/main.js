@@ -5,6 +5,12 @@ var Util = {
     isLetter(char) {
         let e = /[A-Za-z]/;
         return e.test(char);
+    },
+    showAndFade(elem, time) {
+        elem.classList.add("show");
+        window.setTimeout(function () {
+            elem.classList.remove("show");
+        }, time);
     }
 }
 
@@ -38,7 +44,7 @@ var App = {
             if (Util.isLetter(chars[i])) {
                 var code = chars[i].charCodeAt(0);
                 var shiftedCode = code - this.key;
-                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 127) {
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
                     shiftedCode += 26;
                 }
                 chars[i] = String.fromCharCode(shiftedCode);
@@ -55,7 +61,7 @@ var App = {
             if (Util.isLetter(chars[i])) {
                 var code = chars[i].charCodeAt(0);
                 var shiftedCode = code + this.key;
-                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 127) {
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
                     shiftedCode -= 26;
                 }
                 chars[i] = String.fromCharCode(shiftedCode);
@@ -67,13 +73,22 @@ var App = {
     },
     copyToClipboard() {
         var copyText = this.outputArea;
-        copyText.select();
-        document.execCommand("Copy");
-        alert("Copied the text: " + copyText.value);
+        var popUp = document.querySelector("#js-copy-alert");
+        if (this.outputArea.value !== "") {
+            copyText.select();
+            document.execCommand("Copy");
+            popUp.textContent = "Output text copied to clipboard"
+            Util.showAndFade(popUp, 2000);
+            // console.log("Copied the text: " + copyText.value);
+        }
+        else {
+            popUp.textContent = "Nothing to copy";
+            Util.showAndFade(popUp, 1500);
+        }
     }
 }
 
-// Styling script
+//** Styling script **//
 
 // Key submit button
 var clientH1 = document.querySelector("div.key-input").clientHeight;
@@ -88,11 +103,9 @@ var clientH3 = document.querySelector("div#output-and-copy").clientHeight / 2;
 var copyButton = document.querySelector("#output-and-copy > button");
 copyButton.style.height = String(clientH3) + "px";
 
-document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHelp);
-// document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
-// document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
+//****//
 
-// Initializing script
+//** Initializing script **//
 
 // Add event listener for buttons
 // Header - reload page
@@ -106,10 +119,16 @@ document.querySelector("button#js-encrypt-start").addEventListener("click", func
     App.encrypt();
 });
 // Decrypt start
-document.querySelector("button#js-decrypt-start").addEventListener("click", function() {
+document.querySelector("button#js-decrypt-start").addEventListener("click", function () {
     App.decrypt();
 });
 // Copy
-document.querySelector("button#js-copy").addEventListener("click", function() {
+document.querySelector("button#js-copy").addEventListener("click", function () {
     App.copyToClipboard();
 });
+// Help buttons
+document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHelp);
+// document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
+// document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
+
+//****//
