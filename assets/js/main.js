@@ -1,6 +1,10 @@
 var Util = {
     reloadPage: function () {
         window.location.reload(true);
+    },
+    isLetter(char) {
+        let e = /[A-Za-z]/;
+        return e.test(char);
     }
 }
 
@@ -18,20 +22,48 @@ var Help = {
 
 var App = {
     key: 3,
-    inputText: document.querySelector("#js-app-form textarea#input-text").value,
+    outputArea: document.querySelector("#js-output-text"),
+    getInputText() {
+        var inputText = document.querySelector("#js-input-text").value;
+        return inputText;
+    },
     setKey() {
         var keyInput = document.querySelector("#js-key-input > input[type='text']").value;
         this.key = Number(keyInput);
-        console.log(this.key);
-        console.log(this);
-        return this.key;
     },
     encrypt() {
-        // console.log(this.key);
+        var plaintext = this.getInputText();
+        var chars = plaintext.split('');
+        for (var i = 0; i < chars.length; i++) {
+            if (Util.isLetter(chars[i])) {
+                var code = chars[i].charCodeAt(0);
+                var shiftedCode = code - this.key;
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 127) {
+                    shiftedCode += 26;
+                }
+                chars[i] = String.fromCharCode(shiftedCode);
+            }
+            else continue;
+        }
+        var ciphertext = chars.join('');
+        this.outputArea.innerHTML = ciphertext;
     },
     decrypt() {
-        // var ciphertext = this.inputText;
-        // var chars = ciphertext.split('');
+        var ciphertext = this.getInputText();
+        var chars = ciphertext.split('');
+        for (var i = 0; i < chars.length; i++) {
+            if (Util.isLetter(chars[i])) {
+                var code = chars[i].charCodeAt(0);
+                var shiftedCode = code + this.key;
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 127) {
+                    shiftedCode -= 26;
+                }
+                chars[i] = String.fromCharCode(shiftedCode);
+            }
+            else continue;
+        }
+        var plaintext = chars.join('');
+        this.outputArea.innerHTML = plaintext;
     }
 }
 
@@ -56,6 +88,12 @@ document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHe
 
 document.querySelector(".app__header").addEventListener("click", Util.reloadPage);
 
-document.querySelector("#js-key-input > button#key-submit").addEventListener("click", App.setKey);
-document.querySelector("button#js-encrypt-start").addEventListener("click", App.encrypt);
-document.querySelector("button#js-decrypt-start").addEventListener("click", App.decrypt);
+document.querySelector("#js-key-input > button#key-submit").addEventListener("click", function () {
+    App.setKey();
+});
+document.querySelector("button#js-encrypt-start").addEventListener("click", function () {
+    App.encrypt();
+});
+document.querySelector("button#js-decrypt-start").addEventListener("click", function() {
+    App.decrypt();
+});
