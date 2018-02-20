@@ -64,6 +64,12 @@ var App = {
         }
         var plaintext = chars.join('');
         this.outputArea.innerHTML = plaintext;
+    },
+    copyToClipboard() {
+        var copyText = this.outputArea;
+        copyText.select();
+        document.execCommand("Copy");
+        alert("Copied the text: " + copyText.value);
     }
 }
 
@@ -86,14 +92,24 @@ document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHe
 // document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
 // document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
 
-document.querySelector(".app__header").addEventListener("click", Util.reloadPage);
+// Initializing script
 
+// Add event listener for buttons
+// Header - reload page
+document.querySelector(".app__header").addEventListener("click", Util.reloadPage);
+// Set key
 document.querySelector("#js-key-input > button#key-submit").addEventListener("click", function () {
     App.setKey();
 });
+// Encrypt start
 document.querySelector("button#js-encrypt-start").addEventListener("click", function () {
     App.encrypt();
 });
+// Decrypt start
 document.querySelector("button#js-decrypt-start").addEventListener("click", function() {
     App.decrypt();
+});
+// Copy
+document.querySelector("button#js-copy").addEventListener("click", function() {
+    App.copyToClipboard();
 });
