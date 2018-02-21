@@ -1,12 +1,20 @@
-var key = 3;
-
-var util = {
+var Util = {
     reloadPage: function () {
         window.location.reload(true);
+    },
+    isLetter(char) {
+        let e = /[A-Za-z]/;
+        return e.test(char);
+    },
+    showAndFade(elem, time) {
+        elem.classList.add("show");
+        window.setTimeout(function () {
+            elem.classList.remove("show");
+        }, time);
     }
 }
 
-var help = {
+var Help = {
     keyHelp: function () {
         alert("key");
     },
@@ -18,17 +26,69 @@ var help = {
     }
 }
 
-var app = {
-    setKey: function () {
-        var keyInput = document.querySelector("#js-key-form > input[type='text']");
-        key = Number(keyInput.value);
+var App = {
+    key: 3,
+    outputArea: document.querySelector("#js-output-text"),
+    getInputText() {
+        var inputText = document.querySelector("#js-input-text").value;
+        return inputText;
     },
-    encode: function () {
-        var plainText = document.querySelector("#js-encoder-form > input[type='text']");
+    setKey() {
+        var keyInput = document.querySelector("#js-key-input > input[type='text']").value;
+        this.key = Number(keyInput);
+    },
+    encrypt() {
+        var plaintext = this.getInputText();
+        var chars = plaintext.split('');
+        for (var i = 0; i < chars.length; i++) {
+            if (Util.isLetter(chars[i])) {
+                var code = chars[i].charCodeAt(0);
+                var shiftedCode = code - this.key;
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
+                    shiftedCode += 26;
+                }
+                chars[i] = String.fromCharCode(shiftedCode);
+            }
+            else continue;
+        }
+        var ciphertext = chars.join('');
+        this.outputArea.innerHTML = ciphertext;
+    },
+    decrypt() {
+        var ciphertext = this.getInputText();
+        var chars = ciphertext.split('');
+        for (var i = 0; i < chars.length; i++) {
+            if (Util.isLetter(chars[i])) {
+                var code = chars[i].charCodeAt(0);
+                var shiftedCode = code + this.key;
+                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
+                    shiftedCode -= 26;
+                }
+                chars[i] = String.fromCharCode(shiftedCode);
+            }
+            else continue;
+        }
+        var plaintext = chars.join('');
+        this.outputArea.innerHTML = plaintext;
+    },
+    copyToClipboard() {
+        var copyText = this.outputArea;
+        var popUp = document.querySelector("#js-copy-alert");
+        if (this.outputArea.value !== "") {
+            copyText.select();
+            document.execCommand("Copy");
+            popUp.textContent = "Output text copied to clipboard"
+            Util.showAndFade(popUp, 2000);
+            // console.log("Copied the text: " + copyText.value);
+        }
+        else {
+            popUp.textContent = "Nothing to copy";
+            Util.showAndFade(popUp, 1500);
+        }
     }
 }
 
-// Styling script
+//** Styling script **//
 
 // Key submit button
 var clientH1 = document.querySelector("div.key-input").clientHeight;
@@ -43,10 +103,32 @@ var clientH3 = document.querySelector("div#output-and-copy").clientHeight / 2;
 var copyButton = document.querySelector("#output-and-copy > button");
 copyButton.style.height = String(clientH3) + "px";
 
-// document.querySelector("i#js-key-help").addEventListener("click", help.keyHelp);
-// document.querySelector("i#js-encoder-help").addEventListener("click", help.encoderHelp);
-// document.querySelector("i#js-decoder-help").addEventListener("click", help.decoderHelp);
+//****//
 
-document.querySelector(".app__header").addEventListener("click", util.reloadPage);
+//** Initializing script **//
 
-// document.querySelector("#js-key-form > input[type='button']").addEventListener("click", app.setKey);
+// Add event listener for buttons
+// Header - reload page
+document.querySelector(".app__header").addEventListener("click", Util.reloadPage);
+// Set key
+document.querySelector("#js-key-input > button#key-submit").addEventListener("click", function () {
+    App.setKey();
+});
+// Encrypt start
+document.querySelector("button#js-encrypt-start").addEventListener("click", function () {
+    App.encrypt();
+});
+// Decrypt start
+document.querySelector("button#js-decrypt-start").addEventListener("click", function () {
+    App.decrypt();
+});
+// Copy
+document.querySelector("button#js-copy").addEventListener("click", function () {
+    App.copyToClipboard();
+});
+// Help buttons
+document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHelp);
+// document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
+// document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
+
+//****//

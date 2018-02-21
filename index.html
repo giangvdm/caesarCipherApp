@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ceasar Cipher Encoder/Decoder</title>
+    <title>Caesar Cipher Encryptor/Decryptor v1.0</title>
     <!-- Load FontAwesome -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Load Normalize.css -->
@@ -17,28 +17,31 @@
 <body>
     <div class="app">
         <div class="app__header">
-            <img src="assets/images/logo.png" alt="Ceasar Cipher logo" class="header__logo">
-            <h1 class="header__title">Ceasar Cipher
-                <br> Encoder &amp; Decoder</h1>
+            <img src="assets/images/logo.png" alt="Caesar Cipher logo" class="header__logo">
+            <h1 class="header__title">Caesar Cipher
+                <br> Encryptor &amp; Decryptor</h1>
         </div>
 
-        <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="external-link" target="_blank">Read more about Ceasar cipher before using >></a>
+        <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="external-link" target="_blank">Read more about Caesar cipher before using >></a>
 
         <div class="app__main" id="js-app-main">
             <div class="key-input" id="js-key-input">
-                <input type="text" name="key" size="2" placeholder="Key"> <i class="far fa-question-circle"></i>
+                <input type="text" name="key" size="2" placeholder="Key">
+                <i class="far fa-question-circle"></i>
                 <button class="custom-btn" id="key-submit">OK</button>
             </div>
             <br>
             <div class="app-form" id="js-app-form">
                 <div id="input-and-function">
-                    <textarea name="input-text" id="input-text" rows="4" placeholder="Input text"></textarea>
-                    <button class="custom-btn">Decode</button>
-                    <button class="custom-btn">Encode</button>
+                    <textarea name="input-text" id="js-input-text" rows="4" placeholder="Input text"></textarea>
+                    <button class="custom-btn" id="js-decrypt-start">Decrypt</button>
+                    <button class="custom-btn" id="js-encrypt-start">Encrypt</button>
                 </div>
                 <div id="output-and-copy">
-                    <textarea name="output-text" id="output-text" rows="4" readonly placeholder="Output text"></textarea>
-                    <button class="custom-btn">Copy</button>
+                    <textarea name="output-text" id="js-output-text" rows="4" readonly placeholder="Output text"></textarea>
+                    <button class="custom-btn" id="js-copy">Copy</button>
+                    <!-- Message that shows when user hit copy button -->
+                    <div class="alert" id="js-copy-alert"></div>
                 </div>
             </div>
         </div>

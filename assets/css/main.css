@@ -114,6 +114,18 @@ a.external-link:hover {
 #input-and-function > textarea, #output-and-copy > textarea {
     width: 55%;
 }
+
+.alert {
+    float: right;
+    width: 15%;
+    font-size: 0.85em;
+    font-style: italic;
+    display: none;
+}
+
+.show {
+    display: block;
+}
 /* */
 
 
@@ -125,10 +137,6 @@ a.external-link:hover {
     padding: 1em 0;
     text-align: center;
     background-color: gray;
-}
-
-.app__footer > a {
-    transition: color 0.2s;
 }
 
 .app__footer > a:hover {
