@@ -35,7 +35,14 @@ var App = {
     },
     setKey() {
         var keyInput = document.querySelector("#js-key-input > input[type='text']").value;
-        this.key = Number(keyInput);
+        if (this.validateKey(keyInput)) {
+            this.key = Number(keyInput);
+        }
+        else alert("Legit shift key must be between 0 and 25. Please try to enter your key again.");
+    },
+    validateKey(input) {
+        if (input < 0 || input > 25) return false;
+        return true;
     },
     encrypt() {
         var plaintext = this.getInputText();
