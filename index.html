@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="assets/css/lib/normalize.css">
     <!-- Load custom CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Load responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 
 <body>
@@ -37,20 +39,22 @@
                     <button class="custom-btn" id="js-decrypt-start">Decrypt</button>
                     <button class="custom-btn" id="js-encrypt-start">Encrypt</button>
                 </div>
+                <br>
                 <div id="output-and-copy">
                     <textarea name="output-text" id="js-output-text" rows="4" readonly placeholder="Output text"></textarea>
                     <button class="custom-btn" id="js-copy">Copy</button>
                     <!-- Message that shows when user hit copy button -->
-                    <div class="alert" id="js-copy-alert"></div>
+                    <div class="message" id="js-copy-message"></div>
                 </div>
             </div>
         </div>
+        <div class="push-for-footer"></div>
     </div>
 
-    <div class="app__footer">
+    <footer class="app__footer">
         Developed by
         <a href="https://github.com/giangvdm15" target="_blank">giangvdm15</a>
-    </div>
+    </footer>
 
     <!-- Load custom JS -->
     <script src="assets/js/main.js"></script>
