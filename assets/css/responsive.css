@@ -6,6 +6,13 @@
         margin-bottom: -200px;
         clear: both;
     }
+    /* 
+    * .app {margin-top: 10px} does not work on mobile devices, 
+    * so we have to set margin-top for the header 
+    */
+    .app__header {
+        margin-top: 10px;
+    }
     .app__main > * {
         margin-left: 1em;
     }
@@ -28,7 +35,13 @@
         float: none;
         margin-left: 0;
     }
+    /* 
+    * On mobile view, the message will push the copy button down away from the above content.
+    * margin-top: -5px will fix it.
+    */
     .message {
+        margin-top: -5px;
+        width: 40%;
         float: none;
     }
 }

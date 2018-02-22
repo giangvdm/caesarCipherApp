@@ -41,7 +41,7 @@ a {
 
 /* Application */
 .app {
-    margin: 10px 0;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: auto 480px auto;
     column-gap: 5px;

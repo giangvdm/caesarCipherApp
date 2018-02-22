@@ -102,6 +102,8 @@ for (var i = 0; i < functionButtons.length; i++) {
 var clientH3 = document.querySelector("div#output-and-copy").clientHeight / 2;
 var copyButton = document.querySelector("#output-and-copy > button");
 copyButton.style.height = String(clientH3) + "px";
+// var copyMessage = document.querySelector("#js-copy-message");
+// copyMessage.style.height = String(clientH3) + "px";
 
 //****//
 
