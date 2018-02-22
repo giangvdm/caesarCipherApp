@@ -2,6 +2,7 @@
 body, html {
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 /* */
 
@@ -44,6 +45,8 @@ a {
     display: grid;
     grid-template-columns: auto 480px auto;
     column-gap: 5px;
+    margin-bottom: -1.25em;
+    min-height: 100%;
 }
 
 .app > * {
@@ -71,7 +74,7 @@ a {
 
 /* Link below header */
 a.external-link {
-    margin: 1em 0 1.5em;
+    margin: 1em 0 1.25em;
 }
 
 a.external-link:hover {
@@ -86,7 +89,7 @@ a.external-link:hover {
     border: none;
     outline: none;
     /* Add custom styling */
-    margin: 0 0 0 1%;
+    margin-left: 1%;
     width: 15%;
     box-sizing: border-box;
     float: right;
@@ -104,18 +107,17 @@ a.external-link:hover {
     margin-top: 1em;
 }
 
+/* Key input area */
 .key-input > input[type="text"] {
     width: 15%;
 }
-/* */
-
-
-/* */
+/* Input and output text areas */
 #input-and-function > textarea, #output-and-copy > textarea {
     width: 55%;
 }
 
-.alert {
+/* Message that shows when click on Copy button */
+.message {
     float: right;
     width: 15%;
     font-size: 0.85em;
@@ -124,14 +126,17 @@ a.external-link:hover {
 }
 
 .show {
-    display: block;
+    display: inline-block;
 }
 /* */
 
 
 /* Footer */
+.app__footer, .push-for-footer {
+    height: 1.25em;
+}
+
 .app__footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1em 0;

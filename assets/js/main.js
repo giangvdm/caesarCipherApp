@@ -73,7 +73,7 @@ var App = {
     },
     copyToClipboard() {
         var copyText = this.outputArea;
-        var popUp = document.querySelector("#js-copy-alert");
+        var popUp = document.querySelector("#js-copy-message");
         if (this.outputArea.value !== "") {
             copyText.select();
             document.execCommand("Copy");

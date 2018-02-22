@@ -1,0 +1,34 @@
+@media screen and (max-width: 500px) {
+    .app {
+        display: initial;
+        width: 100%;
+        min-height: 100%;
+        margin-bottom: -200px;
+        clear: both;
+    }
+    .app__main > * {
+        margin-left: 1em;
+    }
+    a.external-link {
+        margin-left: 1em;
+        display: block;
+    }
+    .key-input > input[type="text"] {
+        width: 40%;
+    }
+    #key-submit {
+        display: block;
+        margin-top: 1%;
+    }
+    #input-and-function > textarea, #output-and-copy > textarea {
+        width: 90%;
+    }
+    .custom-btn {
+        width: 30%;
+        float: none;
+        margin-left: 0;
+    }
+    .message {
+        float: none;
+    }
+}
