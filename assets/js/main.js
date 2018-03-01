@@ -2,10 +2,6 @@ var Util = {
     reloadPage: function () {
         window.location.reload(true);
     },
-    isLetter(char) {
-        let e = /[A-Za-z]/;
-        return e.test(char);
-    },
     showAndFade(elem, time) {
         elem.classList.add("show");
         window.setTimeout(function () {
@@ -14,6 +10,7 @@ var Util = {
     }
 }
 
+// Redundant feature's resource
 var Help = {
     keyHelp: function () {
         alert("key");
@@ -44,19 +41,43 @@ var App = {
         if (input < 0 || input > 25) return false;
         return true;
     },
+    charCheck(char) {
+        var result = {
+            // default values
+            isLetter: false,
+            case: "lowercase"
+        }
+
+        // Proceed to check
+        let eUpper = /[A-Z]/;
+        let eLower = /[a-z]/;
+        let upperCheck = eUpper.test(char);
+        let lowerCheck = eLower.test(char);
+
+        // Gather results
+        if (upperCheck || lowerCheck) result.isLetter = true;
+        if (upperCheck) result.case = "uppercase";
+
+        return result;
+    },
     encrypt() {
         var plaintext = this.getInputText();
         var chars = plaintext.split('');
         for (var i = 0; i < chars.length; i++) {
-            if (Util.isLetter(chars[i])) {
-                var code = chars[i].charCodeAt(0);
-                var shiftedCode = code - this.key;
-                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
+            var curr = chars[i];
+            console.log(this.charCheck(curr));
+            if (this.charCheck(curr).isLetter) {
+                var currentCode = curr.toLowerCase().charCodeAt(0);
+                var shiftedCode = currentCode - this.key;
+                if (shiftedCode < 97 || shiftedCode > 122) {
                     shiftedCode += 26;
                 }
                 chars[i] = String.fromCharCode(shiftedCode);
+                // if the letter is originally uppercase, then switch the encrypted one to uppercase
+                if (this.charCheck(curr).case === "uppercase") {
+                    chars[i] = chars[i].toUpperCase();
+                }
             }
-            else continue;
         }
         var ciphertext = chars.join('');
         this.outputArea.innerHTML = ciphertext;
@@ -64,16 +85,21 @@ var App = {
     decrypt() {
         var ciphertext = this.getInputText();
         var chars = ciphertext.split('');
+        var casePattern = [];
         for (var i = 0; i < chars.length; i++) {
-            if (Util.isLetter(chars[i])) {
-                var code = chars[i].charCodeAt(0);
-                var shiftedCode = code + this.key;
-                if (shiftedCode < 65 || shiftedCode > 90 && shiftedCode < 97 || shiftedCode > 122) {
+            var curr = chars[i];
+            if (this.charCheck(curr).isLetter) {
+                var currentCode = curr.toLowerCase().charCodeAt(0);
+                var shiftedCode = currentCode + this.key;
+                if (shiftedCode < 97 || shiftedCode > 122) {
                     shiftedCode -= 26;
                 }
                 chars[i] = String.fromCharCode(shiftedCode);
+                // if the letter is originally uppercase, then switch the decrypted one to uppercase
+                if (this.charCheck(curr).case === "uppercase") {
+                    chars[i] = chars[i].toUpperCase();
+                }
             }
-            else continue;
         }
         var plaintext = chars.join('');
         this.outputArea.innerHTML = plaintext;
@@ -86,7 +112,6 @@ var App = {
             document.execCommand("Copy");
             popUp.textContent = "Output text copied to clipboard"
             Util.showAndFade(popUp, 2000);
-            // console.log("Copied the text: " + copyText.value);
         }
         else {
             popUp.textContent = "Nothing to copy";
@@ -137,6 +162,8 @@ document.querySelector("button#js-copy").addEventListener("click", function () {
 });
 // Help buttons
 document.querySelector("#js-key-input > i").addEventListener("click", Help.keyHelp);
+
+// Redundant feature
 // document.querySelector("i#js-encoder-help").addEventListener("click", Help.encoderHelp);
 // document.querySelector("i#js-decoder-help").addEventListener("click", Help.decoderHelp);
 
